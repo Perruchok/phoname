@@ -1,21 +1,61 @@
 # Import the unittest library and our function
 import unittest
-from phoname import convert,dict,special
+from helpers import convert, print_number
+from mock import patch
 
-# A class containing all of our tests
-class Tests(unittest.TestCase):
 
-    def test_1(self):
-        self.assertTrue(convert("+52love",dict,special) == "+525683")
+# Test convert function.
+class TestsConvert(unittest.TestCase):
+    MAPPER = {
+        "+": "plus",
+        "-": "dash",
+        "(": "close-parenthesis",
+        ")": "open-parenthesis",
+    }
 
-    def test_2(self):
-        self.assertTrue(convert("+5 eat - tacos",dict,special) == "+5d328dcd82267") 
+    def _get_expected_output(number):
+        return [
+            f"{MAPPER['symbol']}.txt" for symbol in number
+        ]
 
-    def test_3(self):
-        self.assertTrue(convert("+ (273) 568-996",dict,special) == "+da273bd568c996")
+    def test_letters_to_number(self):
+        expected_output = self._get_expected_output("+52 (568) 123-74239")
+        self.assertTrue(convert("+52 (love) 1cf-pg2bvz") == expected_output)
 
-    def test_4(self):
-        self.assertTrue(convert("((Love)) + -You",dict,special) == "aa5683bbd+dc968")      
+    def test_it_does_not_convert_numbers(self):
+        expected_output = self._get_expected_output("+52 (568) 123-74239")
+        self.assertTrue(convert("+52 (568) 123-74239") == expected_output)
+
+
+# TODO: do this test.
+class TestsConvert(unittest.TestCase):
+
+
+
+class MyTest(TestCase):
+
+    @patch('print')
+    def test_letters_to_number(self, mock_print):
+        # TODO: Learn how a function is mock.
+        # You will have to mock the "print" function.
+        # Resources: https://docs.python.org/3/library/unittest.mock.html
+
+        expected_line_to_print = "\n".join([
+            "  / _   |     |  _____   \ ",
+            " / / |  |     |_/    /  /  ",
+            " / / |  |     |_/    /  /  ",
+        ])
+
+        print_number([
+            "1.txt", 
+            "2.txt",
+        ])
+
+        line_to_print, kwargs = mock_print.call_args 
+        self.assertEqual(line_to_print, expected_line_to_print)
+
+
+
 
 
 
