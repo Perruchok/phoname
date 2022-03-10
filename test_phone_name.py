@@ -41,9 +41,14 @@ class MyTest(TestCase):
         # Resources: https://docs.python.org/3/library/unittest.mock.html
 
         expected_line_to_print = "\n".join([
-            "  / _   |     |  _____   \ ",
-            " / / |  |     |_/    /  /  ",
-            " / / |  |     |_/    /  /  ",
+   _____      __________     
+  / _   |     |  _____   \   
+ / / |  |     |_/    /  /    
+/_/  |  |           /  /     
+     |  |          /  /      
+     |  |         /  /       
+ ____|  |____    /  \______  
+|___________|   /__________| 
         ])
 
         print_number([
