@@ -1,6 +1,6 @@
 # Import the unittest library and our function
 import unittest
-from helpers import convert, print_number
+from helpers import convert, print_number, _print_number
 from mock import patch
 
 
@@ -27,28 +27,23 @@ class TestsConvert(unittest.TestCase):
         self.assertTrue(convert("+52 (568) 123-74239") == expected_output)
 
 
-# TODO: do this test.
-class TestsConvert(unittest.TestCase):
+class MyTest(unittest.TestCase):
 
-
-
-class MyTest(TestCase):
-
-    @patch('print')
+    @patch("helpers._print_number")
     def test_letters_to_number(self, mock_print):
         # TODO: Learn how a function is mock.
         # You will have to mock the "print" function.
         # Resources: https://docs.python.org/3/library/unittest.mock.html
 
         expected_line_to_print = "\n".join([
-   _____      __________     
-  / _   |     |  _____   \   
- / / |  |     |_/    /  /    
-/_/  |  |           /  /     
-     |  |          /  /      
-     |  |         /  /       
- ____|  |____    /  \______  
-|___________|   /__________| 
+            "   _____      __________     ",
+            "  / _   |     |  _____   \   ",
+            " / / |  |     |_/    /  /    ",
+            "/_/  |  |           /  /     ",
+            "     |  |          /  /      ",
+            "     |  |         /  /       ",
+            " ____|  |____    /  \______  ",
+            "|___________|   /__________|\n",
         ])
 
         print_number([
@@ -56,7 +51,9 @@ class MyTest(TestCase):
             "2.txt",
         ])
 
-        line_to_print, kwargs = mock_print.call_args 
+        import ipdb; ipdb.set_trace()
+
+        (line_to_print,), kwargs = mock_print.call_args 
         self.assertEqual(line_to_print, expected_line_to_print)
 
 

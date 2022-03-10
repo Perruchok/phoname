@@ -44,6 +44,10 @@ def convert(unclean_phone_number: str) -> List[str]:
     return clearn_phone_number
 
 
+def _print_number(line_to_print):
+    print(line_to_print)
+
+
 def print_number(number_files):
     """
         Function that prints given by 'convert'.
@@ -66,14 +70,14 @@ def print_number(number_files):
 
     # Each file has eight rows.
     number_of_row = 8
+    line_to_print = ""
     for row in range(number_of_row):
-
-        line_to_print = ""
         for number_file in number_files:
             number_file_lines = file_to_character_list[number_file]
 
             #There must be a "\n" as the last char of the string, so remove it.
             line_to_print += number_file_lines[row].replace("\n", "")
 
+        line_to_print += "\n"
 
-        print(line_to_print)
+    _print_number(line_to_print)
