@@ -1,13 +1,13 @@
-from phonamef import convert,printnumber,dict,special
+from helpers import convert, print_number
 
 # Get string 
 print("Ingresa un número de teléfono:  ")
 number = str(input())
 
 #Convert number to be printed 
-number = convert(number,dict,special)
+number = convert(number)
 
-printnumber(number)
+print_number(number)
 
 
     

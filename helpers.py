@@ -1,52 +1,72 @@
-# Number to letter relation
-dict = {
-    "2":["a","b","c"], 
-    "3":["d","e","f"],
-    "4":["g","h","i"],
-    "5":["j","k","l"],
-    "6":["m","n","o"],
-    "7":["p","q","r","s"],
-    "8":["t","u","v"],
-    "9":["w","x","y","z"]
+symbol_relations = {
+    "1.txt": "1",
+    "2.txt": ["2", "a", "b", "c"], 
+    "3.txt": ["3", "d", "e", "f"],
+    "4.txt": ["4", "g", "h", "i"],
+    "5.txt": ["5", "j", "k", "l"],
+    "6.txt": ["6", "m", "n", "o"],
+    "7.txt": ["7", "p", "q", "r", "s"],
+    "8.txt": ["8", "t", "u", "v"],
+    "9.txt": ["9", "w", "x"," y", "z"],
+    "open_parenthesis.txt": "(",
+    "close_parenthesis.txt": ")",
+    "minus.txt": "-", 
+    "space.txt": " ",
+    "+.txt": "+",
 }
 
-# Special characters
-special = {
-    "a" : "(",
-    "b" : ")",
-    "c" : "-", 
-    "d" : " "
-}
+
+symbol_to_file = {}
+for file_name, posible_letters in symbol_relations.items():
+    for posible_letter in posible_letters:
+        symbol_to_file[posible_letter] = file_name
+
 
 # Function that converts strings to numbers as specified. 
-def convert(number, dict, special):
-    number = list(number.lower())
-    for char in range(len(number)): 
-        if number[char].isalpha():
-            #Swap accordingly
-            for i,j in dict.items():
-                if number[char] in j :
-                    number[char] = i  
-        #Handle special characters            
-        for i,j in special.items():
-            if number[char] in j:
-                number[char] = i                                       
-    number = ''.join(number)   
-    return number
+def convert(unconverted_number): 
 
-# Function that prints given by "convert" 
-def printnumber(number):
-    for n in range(8): # File texts have only 8 lines
-        linetoprint = ""
-        # Built the nth line:
-        for i in number:
-            try:
-                f = open(f'{i}.txt', 'r')
-            except FileNotFoundError:
-                print("Entrada no válida")
-                exit()
-            lines = f.readlines()
-            linetoprint = linetoprint + lines[n][:-1] #There must be a "/n" as the last char of the string, so remove it. 
-            f.close()
-        print(linetoprint)
-    return    
+    #Do conversion
+    converted_number_file_list = list()
+    for char in unconverted_number: 
+        converted_number_file_list.append(
+            symbol_to_file[char]
+            )   
+
+        #Ad space to solve line error
+        converted_number_file_list.append("space.txt")     
+ 
+    return converted_number_file_list
+
+
+# Function that prints number given by "convert" 
+def print_number(converted_number_file_list):
+
+    # Save required system files into buffer 
+    file_buffer = dict()
+    for file in converted_number_file_list:
+        try: 
+             file_obj = open(f"characters/{file}")
+
+        except FileNotFoundError: 
+            raise FileNotFoundError(
+                f"Character {file} is not valid."
+            )
+
+        file_buffer[file] = file_obj.readlines()
+
+        file_obj.close()
+
+    # Print 
+    file_lines = 8 
+    line_to_print = ""
+    for line in range(file_lines): 
+        for file in converted_number_file_list:
+
+            character_file_lines = file_buffer[file]
+
+            #There must be a \n at the end of the line, so remove it
+            line_to_print += character_file_lines[line].replace("\n", "")
+
+        line_to_print += "\n"    
+
+    print(line_to_print)
