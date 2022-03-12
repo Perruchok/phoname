@@ -2,11 +2,11 @@
 import unittest
 from helpers import convert
 
-# A class containing all of our tests
-class Tests(unittest.TestCase):
+# Test convert function 
+class TestConvert(unittest.TestCase):
 
     def test_1(self):
-        self.assertTrue(convert("((Love)) + -You") == "aa5683bbd+dc968")      
+        self.assertTrue(convert("((Love)) + -You") == "aa5683bbd+dc968")
 
 # Run each of the testing functions
 if __name__ == "__main__":

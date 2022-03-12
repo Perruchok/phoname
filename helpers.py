@@ -22,8 +22,10 @@ for file_name, posible_letters in symbol_relations.items():
         symbol_to_file[posible_letter] = file_name
 
 
-# Function that converts strings to numbers as specified. 
 def convert(unconverted_number): 
+    """
+        Function that converts strings to numbers as specified. 
+    """
 
     #Do conversion
     converted_number_file_list = list()
@@ -38,8 +40,10 @@ def convert(unconverted_number):
     return converted_number_file_list
 
 
-# Function that prints number given by "convert" 
 def print_number(converted_number_file_list):
+    """
+        Function that prints number given by "convert" 
+    """
 
     # Save required system files into buffer 
     file_buffer = dict()
@@ -56,8 +60,9 @@ def print_number(converted_number_file_list):
 
         file_obj.close()
 
-    # Print 
+    # Print to terminal
     file_lines = 8 
+
     line_to_print = ""
     for line in range(file_lines): 
         for file in converted_number_file_list:
@@ -67,6 +72,6 @@ def print_number(converted_number_file_list):
             #There must be a \n at the end of the line, so remove it
             line_to_print += character_file_lines[line].replace("\n", "")
 
-        line_to_print += "\n"    
+        line_to_print += "\n"
 
     print(line_to_print)
