@@ -7,7 +7,7 @@ symbol_relations = {
     "6.txt": ["6", "m", "n", "o"],
     "7.txt": ["7", "p", "q", "r", "s"],
     "8.txt": ["8", "t", "u", "v"],
-    "9.txt": ["9", "w", "x"," y", "z"],
+    "9.txt": ["9", "w", "x","y", "z"],
     "open_parenthesis.txt": "(",
     "close_parenthesis.txt": ")",
     "minus.txt": "-", 
@@ -30,8 +30,9 @@ def convert(unconverted_number):
     #Do conversion
     converted_number_file_list = list()
     for char in unconverted_number: 
+        
         converted_number_file_list.append(
-            symbol_to_file[char]
+            symbol_to_file[char.lower()]
             )   
 
         #Ad space to solve line error
@@ -74,4 +75,4 @@ def print_number(converted_number_file_list):
 
         line_to_print += "\n"
 
-    print(line_to_print)
+    return line_to_print
