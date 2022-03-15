@@ -1,3 +1,4 @@
+from typing import List 
 symbol_relations = {
     "1.txt": "1",
     "2.txt": ["2", "a", "b", "c"], 
@@ -22,7 +23,7 @@ for file_name, posible_letters in symbol_relations.items():
         symbol_to_file[posible_letter] = file_name
 
 
-def convert(unconverted_number): 
+def convert(unconverted_number: str) -> List[str]: 
     """
         Function that converts strings to numbers as specified. 
     """
@@ -41,7 +42,7 @@ def convert(unconverted_number):
     return converted_number_file_list
 
 
-def print_number(converted_number_file_list):
+def print_number(converted_number_file_list: List[str]) -> str:
     """
         Function that prints number given by "convert" 
     """
